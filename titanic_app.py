@@ -37,6 +37,7 @@ st.write("### Bu uygulama, Titanic yolcularının hayatta kalma olasılığını
 # ----------------------------------------------------
 with st.spinner("🔄 Model yükleniyor... Lütfen bekleyin"):
     model = joblib.load("titanic_model.pkl")
+st.write("Model features:", model.feature_names_in_)
 
 # Kullanılacak özellikler
 feature_names = ["Pclass", "Sex", "Age", "Fare", "Embarked"]
@@ -98,3 +99,4 @@ if st.button("🚀 Tahmin Et"):
     ax.set_xlabel("Önem Derecesi")
     ax.set_title("Feature Importance")
     st.pyplot(fig)
+
