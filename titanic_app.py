@@ -37,10 +37,9 @@ st.write("### Bu uygulama, Titanic yolcularının hayatta kalma olasılığını
 # ----------------------------------------------------
 with st.spinner("🔄 Model yükleniyor... Lütfen bekleyin"):
     model = joblib.load("titanic_model.pkl")
-st.write("Model features:", model.feature_names_in_)
 
 # Kullanılacak özellikler
-feature_names = ["Pclass", "Sex", "Age", "Fare", "Embarked"]
+feature_names = ["Pclass", "Sex", "Age", "Fare", "Embarked", "FamilySize"]
 
 # ----------------------------------------------------
 # 🧮 KULLANICI GİRDİLERİ
@@ -52,6 +51,7 @@ sex = st.sidebar.selectbox("Cinsiyet", ["male", "female"])
 age = st.sidebar.slider("Yaş", 1, 80, 28)
 fare = st.sidebar.slider("Bilet Ücreti", 0, 500, 50)
 embarked = st.sidebar.selectbox("Biniş Limanı", ["S", "C", "Q"])
+family_size = st.sidebar.slider("Aile Büyüklüğü", 1, 11, 1)
 
 # Kategorik dönüşümler
 sex_map = {"male": 0, "female": 1}
@@ -62,7 +62,8 @@ input_data = pd.DataFrame([{
     "Sex": sex_map[sex],
     "Age": age,
     "Fare": fare,
-    "Embarked": embark_map[embarked]
+    "Embarked": embark_map[embarked],
+    "FamilySize": family_size
 }])
 
 # ----------------------------------------------------
@@ -99,4 +100,5 @@ if st.button("🚀 Tahmin Et"):
     ax.set_xlabel("Önem Derecesi")
     ax.set_title("Feature Importance")
     st.pyplot(fig)
+
 
