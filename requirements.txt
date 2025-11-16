@@ -1,6 +1,5 @@
-streamlit==1.50.0
-scikit-learn
+streamlit==1.37.1
 pandas
-matplotlib
+scikit-learn
 joblib
-
+plotly
